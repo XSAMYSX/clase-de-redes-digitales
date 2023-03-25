@@ -1,0 +1,22 @@
+GNU nano 6.2                                                                                      TCPServer.py                                                                                                
+import socket
+import time
+
+serverPort = 12000 ##Implicación de que sea el mismo puerto
+serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+serverSocket.bind(("", serverPort))
+serverSocket.listen(1)
+print("Servidor listo para recibir TCP")
+while 1:
+        connectionSocket, addr = serverSocket.accept()
+        sentence = connectionSocket.recv(1024)
+        capitalizedSentence = sentence.upper()
+        connectionSocket.send(capitalizedSentence)
+        request = client_socket.recv(1024).decode()
+    # si la solicitud es para la hora actual, enviar la hora actual al cliente
+        if request == 'time':
+                current_time = time.strftime('%H:%M:%S', time.localtime())
+                clientSocket.send(current_time.encode())
+                print(f'Se envió la hora actual {current_time} al cliente {client_address}')
+    
+        #connectionSocket.close()
